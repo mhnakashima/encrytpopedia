@@ -2,6 +2,9 @@
   <!-- Favorites Container -->
   <app-favorites></app-favorites>
 
+  <!-- Chart Container-->
+  <app-chart></app-chart>
+
   <!-- Users Container -->
   <div class="container marginTop20px" *ngIf="coins.length != 0">
     <div class="row">
@@ -18,6 +21,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">Current Price</th>
+                <th scope="col">Current Price 24 hours</th>
                 <th scope="col">Total Volume</th>
               </tr>
             </thead>
@@ -31,6 +35,7 @@
                 </td>
                 <td>{{ coin.name }}</td>
                 <td>{{ coin.currentPrice | currency }}</td>
+                <td>{{ coin.highPerDay | currency }}</td>
                 <td>{{ coin.totalVolume }}</td>
               </tr>
             </tbody>

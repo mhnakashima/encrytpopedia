@@ -4,10 +4,11 @@ export class Coin {
     name?: string;
     image?: string;
     currentPrice?: number;
+    highPerDay?: number;
     totalVolume?: number;
     isSelected?: boolean;
 
-    constructor(id: string, symbol: string, name: string, image: string, currentPrice: number, totalVolume: number, isSelected: boolean) {
+    constructor(id: string, symbol: string, name: string, image: string, currentPrice: number, totalVolume: number, highPerDay: number, isSelected: boolean) {
         this.id = id;
         this.symbol = symbol;
         this.name = name;
@@ -15,5 +16,6 @@ export class Coin {
         this.currentPrice = currentPrice;
         this.totalVolume = totalVolume;
         this.isSelected = isSelected;
+        this.highPerDay = highPerDay;
     }
 }

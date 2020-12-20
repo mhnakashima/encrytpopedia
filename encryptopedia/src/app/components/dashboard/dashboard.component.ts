@@ -52,7 +52,7 @@ export class DashboardComponent implements OnInit {
         if(response){
           const coins: Coin[] = [];
           response.forEach(item => {
-            const coin: Coin = new Coin(item.id, item.symbol, item.name, item.image, item.current_price, item.total_volume, false);
+            const coin: Coin = new Coin(item.id, item.symbol, item.name, item.image, item.current_price, item.total_volume, item.high_24h, false);
             coins.push(coin);
           });
           return coins;
@@ -61,7 +61,6 @@ export class DashboardComponent implements OnInit {
       .then(
         (response) => {
           this.coins = [...this.coins, ...response];
-          console.log(':', this.coins);
         },
         (reject) => {
           console.log(reject);
