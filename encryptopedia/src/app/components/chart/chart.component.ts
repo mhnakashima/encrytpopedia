@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { Coin } from 'src/app/api/coin';
-import { UtilsService } from 'src/app/utils/utils.service';
 
 @Component({
   selector: 'app-chart',
@@ -23,7 +22,7 @@ export class ChartComponent implements OnInit {
 
   public barChartData: ChartDataSets[] = [];
 
-  constructor(private utilsService: UtilsService) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.updateCharts();

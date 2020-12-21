@@ -31,8 +31,8 @@
                   </button>
                 </td>
                 <td>{{ coin.name }}</td>
-                <td>{{ coin.currentPrice | currency }}</td>
-                <td>{{ coin.highPerDay | currency }}</td>
+                <td>{{ coin.currentPrice | currency:'BRL':true }}</td>
+                <td>{{ coin.highPerDay | currency:'BRL':true }}</td>
                 <td>{{ coin.totalVolume }}</td>
               </tr>
             </tbody>

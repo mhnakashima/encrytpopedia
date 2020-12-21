@@ -37,7 +37,7 @@
               <div class="card-body">
                 <h5 class="card-title">{{ coin?.name }}</h5>
                 <p class="card-text">
-                  {{ coin?.currentPrice | currency }} | {{ coin?.totalVolume }}
+                  {{ coin?.currentPrice | currency:'BRL':true }} | {{ coin?.totalVolume }}
                 </p>
               </div>
 
