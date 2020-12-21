@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
-import { Observable } from 'rxjs';
 import { Coin } from 'src/app/api/coin';
 import { UtilsService } from 'src/app/utils/utils.service';
 
@@ -12,8 +11,7 @@ import { UtilsService } from 'src/app/utils/utils.service';
 })
 export class ChartComponent implements OnInit {
 
-  coins: Coin[] = [];
-  coinsObservable$: Observable<Coin[]>;
+  @Input() coin: Coin;
 
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -28,42 +26,27 @@ export class ChartComponent implements OnInit {
   constructor(private utilsService: UtilsService) { }
 
   ngOnInit(): void {
-    this.loadCoins();
-    this.startSubscribers();
     this.updateCharts();
-  }
-
-  async loadCoins(): Promise<void> {
-    this.coins = await this.utilsService.getFavorites();
-    this.updateCharts();
-  }
-
-  startSubscribers(): void {
-    this.utilsService.getFavoritesObservable()
-      .subscribe(
-        response => {
-          this.coins = response;
-          this.updateCharts();
-        }
-      )
   }
 
   updateCharts(): void {
-    const labels: Label[] = [];   
+    if (!this.coin) {
+      return;
+    }
+
+    const labels: Label[] = [];
     const currentDataPrice = [];
-    const currentHighPerData = []; 
-    
-    this.coins.forEach(coin => {      
-      labels.push(coin.name);
-      currentDataPrice.push(coin.currentPrice);
-      currentHighPerData.push(coin.highPerDay);
-    });
+    const currentHighPerData = [];
+
+    labels.push(this.coin.name);
+    currentDataPrice.push(this.coin.currentPrice);
+    currentHighPerData.push(this.coin.highPerDay);
 
     this.barChartLabels = labels;
     this.barChartData = [];
     this.barChartData.push(
-        {data: currentDataPrice, label: 'Preço Atual'},
-        {data: currentHighPerData, label: 'Preço nas últimas 24hrs'}
-      )
+      { data: currentDataPrice, label: 'Preço Atual' },
+      { data: currentHighPerData, label: 'Preço nas últimas 24hrs' }
+    )
   }
 }

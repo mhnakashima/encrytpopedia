@@ -8,7 +8,7 @@ import { UtilsService } from 'src/app/utils/utils.service';
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.scss']
 })
-export class FavoritesComponent implements OnInit, OnDestroy {
+export class FavoritesComponent implements OnInit {
 
   coins: Coin[] = [];
   coinsObservable$: Observable<Coin[]>;
@@ -31,10 +31,6 @@ export class FavoritesComponent implements OnInit, OnDestroy {
           this.coins = response;
         }
       )
-  }
-
-  ngOnDestroy() {
-
   }
 
   removeFavorite(coin: Coin):void{

@@ -5,37 +5,48 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-12 col-sm-4 col-md-4 col-lg-4" *ngFor="let coin of coins">
-      <div class="card-container">
-        <div class="card-star no-layout">
-          <button class="card-star no-layout" (click)="removeFavorite(coin)">
-            <img
-              [src]="
-                !coin.isSelected
-                  ? './assets/images/star-empty.png'
-                  : './assets/images/star-filled.png'
-              "
-              alt="Favorite icon"
-            />
-          </button>         
+    <div class="col-12 col-sm-12">
+      <div class="slider">
+        <div class="slider__item" [ngClass]="'slider__item--' + i" *ngFor="let coin of coins; let i = index">
+          <div class="card-container">
+            <div class="card-star no-layout">
+              <button
+                class="card-star no-layout"
+                (click)="removeFavorite(coin)"
+              >
+                <img
+                  [src]="
+                    !coin.isSelected
+                      ? './assets/images/star-empty.png'
+                      : './assets/images/star-filled.png'
+                  "
+                  alt="Favorite icon"
+                />
+              </button>
+            </div>
+
+            <a class="card" [routerLink]="['/details', coin.name]">
+              <div class="card-header">
+                <div
+                  class="card-avatar"
+                  [ngStyle]="{ 'background-image': 'url(' + coin.image + ')' }"
+                  alt="favorite Image"
+                ></div>
+              </div>
+
+              <div class="card-body">
+                <h5 class="card-title">{{ coin?.name }}</h5>
+                <p class="card-text">
+                  {{ coin?.currentPrice | currency }} | {{ coin?.totalVolume }}
+                </p>
+              </div>
+
+              <div class="card-footer">
+                <app-chart [coin]="coin"></app-chart>
+              </div>
+            </a>
+          </div>
         </div>
-
-        <a class="card" [routerLink]="['/details', coin.name]">
-          <div class="card-header">
-            <div
-              class="card-avatar"
-              [ngStyle]="{ 'background-image': 'url(' + coin.image + ')' }"
-              alt="favorite Image"
-            ></div>
-          </div>
-
-          <div class="card-body">
-            <h5 class="card-title">{{ coin?.name }}</h5>
-            <p class="card-text">
-              {{ coin?.currentPrice | currency }} | {{ coin?.totalVolume }}
-            </p>
-          </div>
-        </a>
       </div>
     </div>
   </div>

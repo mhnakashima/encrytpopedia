@@ -104,6 +104,16 @@
   }
 }
 
+.slider{
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  
+  &__item{
+    padding: 0 10px;
+  }
+}
+
+
 .text-title {
   margin-bottom: 10px;
 }
