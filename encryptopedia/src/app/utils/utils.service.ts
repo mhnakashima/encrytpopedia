@@ -25,7 +25,7 @@ export class UtilsService {
     return this.http.get<Coin[]>(`${APIENDPOINT}coins/markets`, { params }).toPromise();
   }
 
-  public getFavoritesObservable():Observable<Coin[]>{
+  public getFavoritesObservable(): Observable<Coin[]> {
     return this.favoritesSubject$.asObservable();
   }
 

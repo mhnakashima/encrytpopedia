@@ -33,8 +33,8 @@ export class FavoritesComponent implements OnInit {
       )
   }
 
-  removeFavorite(coin: Coin):void{
-    this.coins = this.coins.filter((item) => { return item.name !== coin.name });
+  removeFavorite(coin: Coin): void {
+    this.coins = this.coins.filter((item) => item.name !== coin.name);
     this.utilsService.setFavorites(this.coins);
   }
 }
